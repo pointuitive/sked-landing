@@ -1,419 +1,159 @@
+
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Pointuitive · Próximamente</title>
-    <meta
-      name="description"
-      content="Pointuitive es una agenda para profesionales. Llega pronto a App Store, Google Play y web."
-    />
-    <meta name="theme-color" content="#F3EBDD" />
+    <meta name="description" content="Pointuitive es una agenda para profesionales. Agenda en segundos. Llega pronto a App Store, Google Play y web." />
+    <meta name="theme-color" content="#fef6ec" />
     <meta name="color-scheme" content="light" />
     <link rel="canonical" href="https://pointuitive.com/" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='%2314284B'/%3E%3C/svg%3E"
-    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132.3 132.3'%3E%3Crect width='132.3' height='132.3' fill='%23fef6ec'/%3E%3Ccircle cx='108.8' cy='18.2' r='13.7' fill='%23b0de31'/%3E%3Ccircle cx='65.5' cy='61.5' r='43.2' fill='%233a0938'/%3E%3Cellipse cx='65.5' cy='61.5' rx='22' ry='21.6' fill='%23fef6ec'/%3E%3Crect x='22.2' y='61.5' width='21.2' height='62.2' fill='%233a0938'/%3E%3Cpath d='m28.2 39.5 54.7 61.6s-28.2 13.6-50-11.1C11.2 65.5 28.2 39.5 28.2 39.5Z' fill='%23b0df32'/%3E%3C/svg%3E" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pointuitive.com/" />
     <meta property="og:title" content="Pointuitive · Próximamente" />
-    <meta
-      property="og:description"
-      content="Una agenda para profesionales. Llega pronto a App Store, Google Play y web."
-    />
+    <meta property="og:description" content="Agenda en segundos. Una agenda para profesionales. Llega pronto a App Store, Google Play y web." />
     <meta property="og:locale" content="es_UY" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=DM+Mono:wght@500&family=Quicksand:wght@700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --navy: #14284b;
-        --beige: #f3ebdd;
-        --ink: #2c3a5c;
+        --plum: #3a0938; --lime: #b0de31; --cream: #fef6ec; --ink: #5a3b58;
+        --pw: min(52vw, calc(100vh / 1.4)); /* ancho del póster */
       }
-      * {
-        box-sizing: border-box;
-      }
-      html {
-        -webkit-text-size-adjust: 100%;
-      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
       body {
-        margin: 0;
-        min-height: 100vh;
-        min-height: 100dvh;
-        display: flex;
-        flex-direction: column;
-        background: var(--beige);
-        color: var(--navy);
-        font-family:
-          Archivo,
-          system-ui,
-          -apple-system,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
+        margin: 0; background: var(--cream); color: var(--plum);
+        font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      a:hover {
-        opacity: 0.8;
-      }
-      a:focus-visible {
-        outline: 3px solid var(--navy);
-        outline-offset: 3px;
-        border-radius: 6px;
-      }
+      a { color: inherit; text-decoration: none; }
+      a:hover { opacity: 0.8; }
+      a:focus-visible { outline: 3px solid var(--plum); outline-offset: 3px; border-radius: 6px; }
+      .page { position: relative; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+      .poster { position: fixed; top: 0; right: 0; height: 100vh; height: 100dvh; width: var(--pw); pointer-events: none; }
+      .poster svg { display: block; width: 100%; height: 100%; }
+      .band { display: none; }
       .wrap {
-        width: 100%;
-        max-width: 1160px;
-        margin: 0 auto;
-        padding-inline: 24px;
+        width: min(1000px, calc(100vw - var(--pw)));
+        margin-left: max(0px, calc((100vw - var(--pw) - 1000px) / 2));
+        padding-inline: clamp(24px, 5vw, 80px);
       }
-      header .wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding-block: 24px;
+      header, main, footer { position: relative; z-index: 1; }
+      header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 24px; }
+      .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 28px; letter-spacing: -0.045em; }
+      .logo svg { width: 40px; height: 40px; display: block; }
+      .mail { font-weight: 700; }
+      main { flex: 1; display: flex; align-items: center; }
+      .hero { padding-block: 24px 56px; }
+      .soon {
+        display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px;
+        padding: 8px 16px 8px 12px; border-radius: 999px; background: var(--lime);
+        font-weight: 800; font-size: 14px;
       }
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-family: Quicksand, Archivo, system-ui, sans-serif;
-        font-weight: 700;
-        font-size: 28px;
-        letter-spacing: -0.01em;
-      }
-      .logo i {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--navy);
-      }
-      .mail {
-        font-weight: 700;
-      }
-      .lb {
-        font-family: "DM Mono", ui-monospace, monospace;
-        font-size: 13px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-      main {
-        flex: 1;
-        display: flex;
-        align-items: center;
-      }
-      .hero {
-        display: grid;
-        grid-template-columns: 1.3fr 1fr;
-        gap: 56px;
-        align-items: center;
-        padding-block: 40px 64px;
-      }
-      .hero .lb {
-        margin-bottom: 20px;
-      }
-      h1 {
-        margin: 0 0 32px;
-        font-family: Quicksand, Archivo, system-ui, sans-serif;
-        font-size: clamp(40px, 5.6vw, 76px);
-        line-height: 1.1;
-        font-weight: 700;
-        letter-spacing: -0.03em;
-      }
-      .nw {
-        white-space: nowrap;
-      }
+      .soon i { width: 8px; height: 8px; border-radius: 50%; background: var(--plum); }
+      h1 { margin: 0 0 28px; font-size: clamp(40px, 4.9vw, 76px); line-height: 1.04; font-weight: 800; letter-spacing: -0.05em; }
+      .nw { white-space: nowrap; }
       .rt {
-        display: inline-grid;
-        vertical-align: top;
-        margin-top: 0.07em;
-        overflow: hidden;
-        border-radius: 0.33em;
-        background: var(--navy);
-        color: var(--beige);
-        transform: rotate(-2deg);
+        display: inline-grid; vertical-align: top; overflow: hidden; border-radius: 0.3em;
+        background: var(--plum); color: var(--lime); transform: rotate(-2deg);
       }
-      .rt span {
-        grid-area: 1/1;
-        padding: 0 0.3em 0.12em;
-        text-align: center;
-        opacity: 0;
-        animation: rot 7.5s infinite both;
-      }
-      .rt span:nth-child(2) {
-        animation-delay: 2.5s;
-      }
-      .rt span:nth-child(3) {
-        animation-delay: 5s;
-      }
+      .rt span { grid-area: 1/1; padding: 0 0.28em 0.1em; text-align: center; opacity: 0; animation: rot 7.5s infinite both; }
+      .rt span:nth-child(2) { animation-delay: 2.5s; }
+      .rt span:nth-child(3) { animation-delay: 5s; }
       @keyframes rot {
-        0% {
-          opacity: 0;
-          transform: translateY(70%);
-        }
-        4%,
-        28% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        33%,
-        100% {
-          opacity: 0;
-          transform: translateY(-70%);
-        }
+        0% { opacity: 0; transform: translateY(70%); }
+        4%, 28% { opacity: 1; transform: translateY(0); }
+        33%, 100% { opacity: 0; transform: translateY(-70%); }
       }
       @media (prefers-reduced-motion: reduce) {
-        .rt span {
-          animation: none;
-        }
-        .rt span:first-child {
-          opacity: 1;
-        }
+        .rt span { animation: none; }
+        .rt span:first-child { opacity: 1; }
       }
-      .sub {
-        margin: 0 0 36px;
-        font-size: clamp(18px, 2vw, 22px);
-        line-height: 1.5;
-        color: var(--ink);
-        max-width: 480px;
-        font-weight: 500;
-      }
-      .btn {
-        display: inline-block;
-        padding: 18px 32px;
-        border-radius: 999px;
-        background: var(--navy);
-        color: var(--beige);
-        font-weight: 800;
-      }
-      .avail {
-        margin-top: 36px;
-      }
-      .avail .lb {
-        margin-bottom: 12px;
-      }
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      .chip {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        border: 2px solid var(--navy);
-        border-radius: 999px;
-        font-weight: 700;
-        font-size: 15px;
-      }
-      .panel {
-        position: relative;
-        min-height: 440px;
-        border-radius: 32px;
-        background: var(--navy);
-        overflow: hidden;
-      }
-      .panel svg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .tag {
-        position: absolute;
-        left: 24px;
-        bottom: 24px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 16px;
-        border-radius: 999px;
-        background: var(--beige);
-        color: var(--navy);
-      }
-      .tag i {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--navy);
-      }
-      footer .wrap {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px 8px;
-        padding-block: 0 calc(40px + env(safe-area-inset-bottom, 0px));
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--ink);
-      }
-      @media (max-width: 860px) {
-        .hero {
-          grid-template-columns: 1fr;
-          gap: 40px;
-          padding-block: 24px 48px;
-        }
-        h1 {
-          font-size: clamp(40px, 12vw, 72px);
-        }
-        .panel {
-          min-height: 240px;
-        }
+      .tagline { display: inline-block; margin: 0 0 20px; font-size: clamp(22px, 2.2vw, 28px); font-weight: 800; letter-spacing: -0.04em; }
+      .tagline svg { display: block; width: 100%; height: 12px; margin-top: 4px; }
+      .sub { margin: 0 0 32px; max-width: 480px; font-size: clamp(17px, 1.7vw, 20px); line-height: 1.5; font-weight: 500; color: var(--ink); }
+      .btn { display: inline-block; padding: 18px 32px; border-radius: 999px; background: var(--plum); color: var(--cream); font-weight: 800; }
+      .avail { margin-top: 36px; }
+      .avail p { margin: 0 0 12px; font-weight: 700; font-size: 15px; color: var(--ink); }
+      .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+      .chip { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border: 2px solid var(--plum); border-radius: 999px; font-weight: 700; font-size: 15px; }
+      footer .wrap { display: flex; flex-wrap: wrap; gap: 6px 8px; padding-block: 0 calc(40px + env(safe-area-inset-bottom, 0px)); font-size: 14px; font-weight: 500; color: var(--ink); }
+      @media (max-width: 900px) {
+        :root { --pw: 0px; }
+        .poster { display: none; }
+        .band { display: block; position: relative; z-index: 0; width: 100%; max-width: 640px; margin-left: auto; height: auto; margin-bottom: 16px; }
+        .hero { padding-block: 16px 40px; }
+        h1 { font-size: clamp(36px, 10.4vw, 72px); }
+        .page { overflow-x: clip; }
+        footer { order: 3; }
       }
       @media (max-width: 520px) {
-        .wrap {
-          padding-inline: 20px;
-        }
-        .logo {
-          font-size: 24px;
-        }
-        .mail {
-          display: none;
-        }
-        .btn {
-          display: block;
-          text-align: center;
-        }
-        .panel {
-          min-height: 200px;
-          border-radius: 24px;
-        }
-        .tag {
-          left: 16px;
-          bottom: 16px;
-        }
+        .wrap { padding-inline: 20px; }
+        .logo { font-size: 24px; }
+        .logo svg { width: 34px; height: 34px; }
+        .mail { display: none; }
+        .btn { display: block; text-align: center; }
       }
     </style>
   </head>
   <body>
-    <header>
-      <div class="wrap">
-        <a class="logo" href="/"><i></i>pointuitive</a>
-        <a class="mail" href="mailto:juan@pointuitive.com"
-          >juan@pointuitive.com</a
-        >
+    <div class="page">
+      <div class="poster" aria-hidden="true">
+        <svg viewBox="0 0 100 140" preserveAspectRatio="xMaxYMax meet">
+          <circle cx="100" cy="38" r="48" fill="#b0de31"/>
+          <path d="M0 140A35 35 0 0 1 70 140H49A14 14 0 0 0 21 140Z" fill="#3a0938"/>
+          <circle cx="35" cy="84" r="7" fill="#b0de31"/>
+          <text transform="translate(88 135) rotate(-90)" textLength="128" lengthAdjust="spacingAndGlyphs" font-size="24" letter-spacing="-1.4" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" fill="#3a0938">pointuitive</text>
+        </svg>
       </div>
-    </header>
-    <main>
-      <div class="wrap hero">
-        <div>
-          <div class="lb">Próximamente</div>
-          <h1 aria-label="Trabajá, no agendes.">
+      <header>
+        <div class="wrap">
+          <a class="logo" href="/" aria-label="Pointuitive"><svg viewBox="0 0 132.29 132.29" aria-hidden="true"><circle cx="108.77" cy="18.2" r="13.66" fill="#b0de31"/><circle cx="65.48" cy="61.49" r="43.25" fill="#3a0938"/><ellipse cx="65.48" cy="61.49" rx="22" ry="21.62" fill="#fef6ec"/><rect x="22.23" y="61.49" width="21.15" height="62.15" fill="#3a0938"/><path d="m28.22 39.54 54.65 61.58s-28.16 13.56-49.98-11.07C11.16 65.52 28.22 39.54 28.22 39.54Z" fill="#b0df32"/></svg>pointuitive</a>
+        </div>
+      </header>
+      <main>
+        <div class="wrap hero">
+          <div class="soon"><i></i>Próximamente</div>
+          <h1 aria-label="Agendar, coordinar o confirmar... o trabajar, esa es la cuestión.">
             <span class="nw" aria-hidden="true">
-              <span class="rt"
-                ><span>Agendar</span><span>Coordinar</span
-                ><span>Confirmar</span></span
-              ><br /> o trabajar...<br />esa es la cuestión.</span
-            >
+              <span class="rt"><span>Agendar</span><span>Coordinar</span><span>Confirmar</span></span><br />
+              o trabajar...<br />esa es la cuestión.
+            </span>
           </h1>
-          <p class="sub">
-            Pointuitive es una agenda para profesionales. Llega pronto;
-            escribinos y pedí acceso anticipado.
+          <p class="tagline">
+            Agenda en segundos.
+            <svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8C50 3 120 9 198 4" fill="none" stroke="#b0de31" stroke-width="5" stroke-linecap="round"/></svg>
           </p>
-          <a
-            class="btn"
-            href="mailto:juan@pointuitive.com?subject=Acceso%20anticipado"
-            >Pedir acceso anticipado</a
-          >
+          <p class="sub">Pointuitive es una agenda para profesionales. Llega pronto; escribinos y pedí acceso anticipado.</p>
+          <a class="btn" href="mailto:juan@pointuitive.com?subject=Acceso%20anticipado">Pedir acceso anticipado</a>
           <!-- Cuando las apps estén publicadas, reemplazar estas etiquetas por los badges oficiales de Apple y Google -->
           <div class="avail">
-            <div class="lb">Estará disponible en</div>
+            <p>Estará disponible en</p>
             <div class="chips">
               <div class="chip">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="5" y="2" width="14" height="20" rx="2" />
-                  <path d="M12 18h.01" /></svg
-                >App Store
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" /><path d="M12 18h.01" /></svg>App Store
               </div>
               <div class="chip">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="5" y="2" width="14" height="20" rx="2" />
-                  <path d="M12 18h.01" /></svg
-                >Google Play
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" /><path d="M12 18h.01" /></svg>Google Play
               </div>
               <div class="chip">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <path
-                    d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                  /></svg
-                >Web
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>Web
               </div>
             </div>
           </div>
         </div>
-        <div class="panel" aria-hidden="true">
-          <svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern
-                id="d"
-                width="40"
-                height="40"
-                patternUnits="userSpaceOnUse"
-              >
-                <circle
-                  cx="20"
-                  cy="20"
-                  r="3"
-                  fill="#F3EBDD"
-                  fill-opacity="0.45"
-                />
-              </pattern>
-            </defs>
-            <rect width="320" height="400" fill="url(#d)" />
-            <circle cx="140" cy="180" r="14" fill="#F3EBDD" />
-          </svg>
-          <div class="lb tag"><i></i>pointuitive.com</div>
-        </div>
-      </div>
-    </main>
-    <footer>
-      <div class="wrap">
-        <span>© 2026 Pointuitive</span><span>·</span
-        ><a href="mailto:juan@pointuitive.com">juan@pointuitive.com</a>
-      </div>
-    </footer>
+      </main>
+      <svg class="band" viewBox="0 0 100 80" aria-hidden="true">
+        <circle cx="80" cy="28" r="28" fill="#b0de31"/>
+        <path d="M0 56A24 24 0 0 1 48 56H34A10 10 0 0 0 14 56Z" fill="#3a0938"/>
+        <text x="6" y="74" textLength="88" lengthAdjust="spacingAndGlyphs" font-size="16.6" letter-spacing="-1" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" fill="#3a0938">pointuitive</text>
+      </svg>
+      <footer>
+        <div class="wrap"><span>© 2026 Pointuitive</span><span>·</span><a href="mailto:juan@pointuitive.com">juan@pointuitive.com</a></div>
+      </footer>
+    </div>
   </body>
 </html>
